@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import DropdownMenu from 'react-native-dropdown-menu';
 import {
   StyleSheet,
@@ -20,8 +21,8 @@ export default class Header extends Component {
   render() {
     var data = [["User1", "User2", "User3"], [], []];
     return (
-      <View style={{flex: 1}}>
-        <View style={{height: 64}} />
+      <View style={styles.dropdown}>
+        <View style={{height: 50}} />
         <DropdownMenu
           style={{flex: 1}}
           bgColor={'white'}
@@ -36,7 +37,7 @@ export default class Header extends Component {
           data={data}
         >
 
-          <View style={{flex: 1}}>
+          <View style={styles.user}>
             { this.state.text === 'User1' && <User1 /> }
             { this.state.text === 'User2' && <User2 /> }
             { this.state.text === 'User3' && <User3 /> }
@@ -46,5 +47,15 @@ export default class Header extends Component {
       </View>
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  dropdown: {
+    backgroundColor: '#FFF',
+    height: 250,
+  },
+  user: {
+    flex: 1,
+    backgroundColor: '#FFF',
+  },
+});
