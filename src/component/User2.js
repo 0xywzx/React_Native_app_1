@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   TextInput,
   Button,
+  Image,
 } from 'react-native';
 
 export default class User2 extends Component {
@@ -73,18 +74,23 @@ export default class User2 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          Name: {this.state.name}
-        </Text>
-        <Text>
-          Email: {this.state.email}
-        </Text>
-        <Text>
-          拍手できる: {this.state.applause}
-        </Text>
-        <Text>
-          拍手された: {this.state.applaused}
-        </Text>
+        <View style={styles.userinfo}>
+          <Text>
+            {this.state.name}
+          </Text>
+          <Image
+            source={require('../image/User2.png')}
+            style={{ width: 50, height: 50 }}
+          />
+        </View>
+        <View style={styles.applause}>
+          <Text style={styles.applauseText}>
+            拍手できる: {this.state.applause}
+          </Text>
+          <Text>
+            拍手された: {this.state.applaused}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -94,10 +100,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 50,
+    width: 400,
+    left: 0,
+    flexDirection: 'row',
+  },
+  userinfo: {
+    alignItems: 'center',
+    marginLeft:20,
+    marginRight:20,
+  },
+  applause: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft:20,
+    marginRight:20,
+  },
+  applauseText: {
+    marginLeft:30,
+    marginRight:30,
   },
   textInput: {
-    margin: 15,
     height: 35,
     width: 200,
     borderWidth: 1,

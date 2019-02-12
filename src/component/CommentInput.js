@@ -6,6 +6,7 @@ import {
     TextInput,
     StyleSheet,
 } from 'react-native';
+import Header from './Header';
 
 const styles = StyleSheet.create({
                                  container: {
@@ -59,7 +60,7 @@ export default class CommentInput extends Component {
                     style={styles.button}
                     onPress={this._onPress}
                 >
-                    <Text style={styles.buttonText}>紹介する</Text>
+                    <Text style={styles.buttonText}>追加</Text>
                 </TouchableOpacity>
             </View>
         );

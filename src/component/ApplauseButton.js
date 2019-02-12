@@ -12,19 +12,26 @@ export default class ApplauseButton extends Component {
     this.state = {count: 0};
   }
 
-  // handleClickメソッドを定義してください
   handleClick() {
   	this.setState({count: this.state.count + 1});
   }
 
   render() {
     return (
-      <View>
-        <Text>
+      <View style={styles.container}>
+        <Button title="👋" onPress={() => {this.handleClick()}} />
+        <Text style={styles.count}>
           {this.state.count}
         </Text>
-        <Button title="👋" onPress={() => {this.handleClick()}} />
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  },
+  count: {
+    paddingTop: 12,
+  },
+})

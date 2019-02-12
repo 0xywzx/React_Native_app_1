@@ -14,12 +14,12 @@ import {
 } from 'react-native';
 import Header from './src/component/Header';
 import CommentIndex from './src/component/CommentIndex';
+import PostUser from './src/component/PostUser';
 
 export default class app extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Header />
         <CommentIndex />
       </View>
     );
