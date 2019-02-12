@@ -1,71 +1,4 @@
-/*
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  SectionList,
-  StyleSheet,
-  Text,
-  View,
-  AsyncStorage,
-  TextInput,
-} from 'react-native';
 
-export default class User1 extends Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      applause: 100,
-      applaused: 0,
-    };
-  }
-  componentDidMount = () => {
-    AsyncStorage.getItem('applause').then(value =>
-      this.setState({ applause: value }));
-    AsyncStorage.getItem('applaused').then(value =>
-      this.setState({ applaused: value })
-    );
-  };
-
-  setapplause = value => {
-    AsyncStorage.setItem('applause', value).then(() => {
-      this.setState({ applause: value });
-    });
-  };
-  setapplaused = value => {
-    AsyncStorage.setItem('applaused', value).then(() => {
-      this.setState({ applaused: value });
-    });
-  };
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          拍手できる: {this.state.applause}
-        </Text>
-        <Text>
-          拍手された: {this.state.applaused}
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  textInput: {
-    margin: 15,
-    height: 35,
-    width: 200,
-    borderWidth: 1,
-    padding: 5,
-  },
-});
-
-*/
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -80,65 +13,50 @@ import {
 } from 'react-native';
 
 export default class User1 extends Component {
-  state = {
-    name: '',
-    email: '',
-    applause:'',
-    applaused:'',
-  };
+  constructor(props) {
+    super(props);
+    this.state ={
+      name: '',
+      email: '',
+      applause: 100,
+      applaused: 0,
+    };
+  }
   componentDidMount = () => {
-    this.getValueFromStorage();
-  };
-
-  getValueFromStorage = () => {
-    let keys = ['name', 'email', 'applause', 'applaused'];
-    AsyncStorage.multiGet(keys).then(result => {
-      this.setState({
-        name: result[0][1],
-        email: result[1][1],
-        applause:　result[2][1],
-        applaused: result[3][1],
-      });
-    });
+    AsyncStorage.getItem('name').then(value =>
+      this.setState({ name: value })
+    );
+    AsyncStorage.getItem('email').then(value =>
+      this.setState({ email: value })
+    );
+    AsyncStorage.getItem('applause').then(value =>
+      this.setState({ email: value })
+    );
+    AsyncStorage.getItem('applaused').then(value =>
+      this.setState({ email: value })
+    );
   };
 
   setName = value => {
-    this.setState({ name: value });
-  };
-  setEmail = value => {
-    this.setState({ email: value });
-  };
-  setApplause = value => {
+   AsyncStorage.setItem('name', value).then(() => {
+     this.setState({ name: value });
+   });
+ };
+ setEmail = value => {
+   AsyncStorage.setItem('email', value).then(() => {
+     this.setState({ email: value });
+   });
+ };
+ setapplause = value => {
+  AsyncStorage.setItem('applause', value).then(() => {
     this.setState({ applause: value });
-  };
-  setApplaused = value => {
-    this.setState({ applaused: value });
-  };
-
-
-  saveText = () => {
-    const value1 = this.state.name;
-    const value2 = this.state.email;
-    const value3 = this.state.applause;
-    const value4 = this.state.applaused;
-    let keys = [['name', value1], ['email', value2], ['applause', value3], ['applaused', value4]];
-    AsyncStorage.multiSet(keys, err => {
-      console.log('Value1' + value1 + ' ' + value4);
-      this.setState({
-        name: value1,
-        email: value2,
-        applause: value3,
-        applaused: value4,
-      });
-    });
-  };
-
-  clearText = () => {
-    let keys = ['name', 'email', 'applause', 'applaused'];
-    AsyncStorage.multiRemove(keys, err => {
-      this.getValueFromStorage();
-    });
-  };
+  });
+};
+setapplaused = value => {
+  AsyncStorage.setItem('applaused', value).then(() => {
+    this.setState({ email: value });
+  });
+};
   render() {
     return (
       <View style={styles.container}>
@@ -153,10 +71,10 @@ export default class User1 extends Component {
         </View>
         <View style={styles.applause}>
           <Text style={styles.applauseText}>
-             {this.state.applause}
+             拍手できる: {this.state.applause}
           </Text>
           <Text>
-             {this.state.applaused}
+            　拍手された: {this.state.applaused}
           </Text>
         </View>
       </View>
