@@ -28,8 +28,7 @@ export default class ApplauseButton extends Component {
   _onLongPressButton() {
     Alert.alert(
       '拍手した人',
-      'User1:',
-
+      '',
       [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ],
@@ -78,13 +77,25 @@ export default class ApplauseButton extends Component {
         subuser,
       } = this.props;
 
-      if (this.state.count < 15) { //提出前に修正
+      if (this.state.count < 15) { 
         this.setState({count: this.state.count + 1});
       } else{
         Alert.alert('Alert', '1ユーザーが１つの投稿に拍手をできるのは１５回までです');
         return;
       }
-
+      if (mainuser === 'User1'){
+        const countapplauded = this.state.applauded + 1;
+      } else if (mainuser === 'User2') {
+        const countapplauded1 = this.state.applauded1 + 1;
+      } else if (mainuser === 'User3') {
+        const countapplauded2 = this.state.applauded2 + 1;
+      } else if (subuser === 'User1'){
+        const countapplauded = this.state.applauded + 1;
+      } else if (subuser === 'User2') {
+        const countapplauded1 = this.state.applauded1 + 1;
+      } else if (subuser === 'User3') {
+        const countapplauded2 = this.state.applauded2 + 1;
+      }
       /*
       const countapplause = this.state.applause - 1;
       const countapplauded = this.state.applauded + 1;
@@ -99,25 +110,10 @@ export default class ApplauseButton extends Component {
           ['applause2', countapplause2],['applauded2', countapplauded2],
         ];
 
-        if (mainuser === 'User1'){
-          const countapplauded = this.state.applauded + 1;
-          await AsyncStorage.setItem('applauded', countapplauded.toString());
-            this.setState({ applauded: countapplauded});
-        } else if (mainuser === 'User2') {
-          const countapplauded1 = this.state.applauded1 + 1;
-        } else if (mainuser === 'User3') {
-          const countapplauded2 = this.state.applauded2 + 1;
-        } else if (subuser === 'User1'){
-          const countapplauded = this.state.applauded + 1;
-          await AsyncStorage.setItem('applause', countapplause.toString());
-            this.setState({ applause: countapplause});
-        } else if (subuser === 'User2') {
-          const countapplauded1 = this.state.applauded1 + 1;
-        } else if (subuser === 'User3') {
-          const countapplauded2 = this.state.applauded2 + 1;
-        }
-
-
+        await AsyncStorage.setItem('applause', countapplause.toString());
+          this.setState({ applause: countapplause});
+        await AsyncStorage.setItem('applauded', countapplauded.toString());
+          this.setState({ applauded: countapplauded});
 
         await AsyncStorage.setItem('applause1', countapplause1.toString());
           this.setState({ applause1: countapplause1});
@@ -152,12 +148,6 @@ export default class ApplauseButton extends Component {
         </TouchableHighlight>
         <Text style={styles.count}>
           {this.state.count}/
-          {this.state.applause}/
-          {this.state.applauded}/
-          {this.state.applause1}/
-          {this.state.applauded1}/
-          {this.state.applause2}/
-          {this.state.applauded2}/
         </Text>
       </View>
     );
