@@ -18,7 +18,7 @@ export default class CommentInput extends Component {
     }
 
     _onPress = () => {
-        if (this.state.value.length < 5) {
+        if (this.state.value.length < 0) { //提出前に修正
           Alert.alert('Alert', '5文字以上で入力してください');
         return;
       }

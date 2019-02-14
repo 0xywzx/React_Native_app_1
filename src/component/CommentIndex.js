@@ -21,6 +21,7 @@ import User3 from './User3';
 import User1_photo from './User1_photo';
 import User2_photo from './User2_photo';
 import User3_photo from './User3_photo';
+import ApplauseButton from './ApplauseButton';
 
 
 export default class CommentIndex extends Component<{}> {
@@ -29,9 +30,9 @@ export default class CommentIndex extends Component<{}> {
     super(props);
 
     this.state = {
-      head: [],
+      head: '',
       list: [],
-      pick: [],
+      pick: '',
     };
   }
 
@@ -112,7 +113,7 @@ export default class CommentIndex extends Component<{}> {
               /*inverted*/
               style={styles.CommentList}
               data={list}
-              renderItem={({ item }) => <CommentItem {...item} /> }
+              renderItem={({ item }) => <CommentItem {...item} head={this.state.head}/> }
             />
           </View>
         </View>

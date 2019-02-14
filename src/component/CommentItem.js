@@ -34,7 +34,7 @@ const CommentItem = (props) => {
         <Text style={styles.text}>{text}</Text>
       </View>
       <View style={styles.function}>
-        <ApplauseButton {...mainuser} />
+        <ApplauseButton mainuser={mainuser} subuser={subuser}/>
         <Text style={styles.date} >
           {created.getFullYear()}/
           {created.getMonth()}/
