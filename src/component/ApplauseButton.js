@@ -77,7 +77,7 @@ export default class ApplauseButton extends Component {
         subuser,
       } = this.props;
 
-      if (this.state.count < 15) { 
+      if (this.state.count < 15) {
         this.setState({count: this.state.count + 1});
       } else{
         Alert.alert('Alert', '1ユーザーが１つの投稿に拍手をできるのは１５回までです');
@@ -85,16 +85,28 @@ export default class ApplauseButton extends Component {
       }
       if (mainuser === 'User1'){
         const countapplauded = this.state.applauded + 1;
+        await AsyncStorage.setItem('applauded', countapplauded.toString());
+          this.setState({ applauded: countapplauded});
       } else if (mainuser === 'User2') {
         const countapplauded1 = this.state.applauded1 + 1;
+        await AsyncStorage.setItem('applauded1', countapplauded1.toString());
+          this.setState({ applauded1: countapplauded1});
       } else if (mainuser === 'User3') {
         const countapplauded2 = this.state.applauded2 + 1;
+        await AsyncStorage.setItem('applauded2', countapplauded2.toString());
+          this.setState({ applauded2: countapplauded2});
       } else if (subuser === 'User1'){
         const countapplauded = this.state.applauded + 1;
+        await AsyncStorage.setItem('applauded', countapplauded.toString());
+          this.setState({ applauded: countapplauded});
       } else if (subuser === 'User2') {
         const countapplauded1 = this.state.applauded1 + 1;
+        await AsyncStorage.setItem('applauded1', countapplauded1.toString());
+          this.setState({ applauded1: countapplauded1});
       } else if (subuser === 'User3') {
         const countapplauded2 = this.state.applauded2 + 1;
+        await AsyncStorage.setItem('applauded2', countapplauded2.toString());
+          this.setState({ applauded2: countapplauded2});
       }
       /*
       const countapplause = this.state.applause - 1;
@@ -109,21 +121,12 @@ export default class ApplauseButton extends Component {
           ['applause1', countapplause1],['applauded1', countapplauded1],
           ['applause2', countapplause2],['applauded2', countapplauded2],
         ];
-
         await AsyncStorage.setItem('applause', countapplause.toString());
           this.setState({ applause: countapplause});
-        await AsyncStorage.setItem('applauded', countapplauded.toString());
-          this.setState({ applauded: countapplauded});
-
         await AsyncStorage.setItem('applause1', countapplause1.toString());
           this.setState({ applause1: countapplause1});
-        await AsyncStorage.setItem('applauded1', countapplauded1.toString());
-          this.setState({ applauded1: countapplauded1});
-
         await AsyncStorage.setItem('applause2', countapplause2.toString());
           this.setState({ applause2: countapplause2});
-        await AsyncStorage.setItem('applauded2', countapplauded2.toString());
-          this.setState({ applauded2: countapplauded2});
      }
      catch(error){
        console.log(error.message);
