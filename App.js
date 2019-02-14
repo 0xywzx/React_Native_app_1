@@ -1,3 +1,4 @@
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -12,9 +13,7 @@ import {
   FlatList,
   Text,
 } from 'react-native';
-import Header from './src/component/Header';
 import CommentIndex from './src/component/CommentIndex';
-import PostUser from './src/component/PostUser';
 
 export default class app extends Component<Props> {
   render() {

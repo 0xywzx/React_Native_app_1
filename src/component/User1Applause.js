@@ -12,12 +12,12 @@ import {
   Image,
 } from 'react-native';
 
-export default class User1 extends Component {
+export default class User1Applause extends Component {
   state = {
     name: '',
     email: '',
     applause: '',
-    applauded: '',
+    applaused: '',
   };
   componentDidMount = () => {
     AsyncStorage.getItem('name').then(value =>
@@ -29,8 +29,8 @@ export default class User1 extends Component {
     AsyncStorage.getItem('applause').then(value =>
       this.setState({ applause: value })
     );
-    AsyncStorage.getItem('applauded').then(value =>
-      this.setState({ applauded: value })
+    AsyncStorage.getItem('applaused').then(value =>
+      this.setState({ applaused: value })
     );
   };
 
@@ -50,8 +50,8 @@ export default class User1 extends Component {
    });
  };
  setapplaused = value => {
-   AsyncStorage.setItem('applauded', value).then(() => {
-     this.setState({ applauded: value });
+   AsyncStorage.setItem('applaused', value).then(() => {
+     this.setState({ email: value });
    });
  };
 
@@ -72,7 +72,7 @@ export default class User1 extends Component {
             拍手できる: {this.state.applause}
          </Text>
          <Text>
-           　拍手された: {this.state.applauded}
+           　拍手された: {this.state.applaused}
          </Text>
        </View>
      </View>

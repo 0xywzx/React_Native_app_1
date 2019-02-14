@@ -15,44 +15,50 @@ export default class User2 extends Component {
   state = {
     name: '',
     email: '',
-    applause:'',
-    applaused:'',
+    applause: '',
+    applauded: '',
   };
   componentDidMount = () => {
-    this.getValueFromStorage();
-  };
-
-  getValueFromStorage = () => {
-    let keys = ['name1', 'email1', 'applause1', 'applaused1'];
-    AsyncStorage.multiGet(keys).then(result => {
-      this.setState({
-        name: result[0][1],
-        email: result[1][1],
-        applause:　result[2][1],
-        applaused: result[3][1],
-      });
-    });
+    AsyncStorage.getItem('name1').then(value =>
+      this.setState({ name: value })
+    );
+    AsyncStorage.getItem('email1').then(value =>
+      this.setState({ email: value })
+    );
+    AsyncStorage.getItem('applause1').then(value =>
+      this.setState({ applause: value })
+    );
+    AsyncStorage.getItem('applauded1').then(value =>
+      this.setState({ applauded: value })
+    );
   };
 
   setName = value => {
-    this.setState({ name: value });
+    AsyncStorage.setItem('name1', value).then(() => {
+      this.setState({ name: value });
+    });
   };
   setEmail = value => {
-    this.setState({ email: value });
+    AsyncStorage.setItem('email1', value).then(() => {
+      this.setState({ email: value });
+    });
   };
-  setApplause = value => {
-    this.setState({ applause: value });
-  };
-  setApplaused = value => {
-    this.setState({ applaused: value });
-  };
-
+  setapplause = value => {
+   AsyncStorage.setItem('applause1', value).then(() => {
+     this.setState({ applause: value });
+   });
+ };
+ setapplaused = value => {
+   AsyncStorage.setItem('applauded1', value).then(() => {
+     this.setState({ applauded: value });
+   });
+ };
 
   saveText = () => {
     const value1 = this.state.name;
     const value2 = this.state.email;
     const value3 = this.state.applause;
-    const value4 = this.state.applaused;
+    const value4 = this.state.applauded;
     let keys = [['name1', value1], ['email1', value2], ['applause1', value3], ['applaused1', value4]];
     AsyncStorage.multiSet(keys, err => {
       console.log('Value1' + value1 + ' ' + value4);
@@ -60,7 +66,7 @@ export default class User2 extends Component {
         name: value1,
         email: value2,
         applause: value3,
-        applaused: value4,
+        applauded: value4,
       });
     });
   };
@@ -85,16 +91,16 @@ export default class User2 extends Component {
         </View>
         <View style={styles.applause}>
           <Text style={styles.applauseText}>
-            拍手できる: {this.state.applause}
+             拍手できる: {this.state.applause}
           </Text>
           <Text>
-            拍手された: {this.state.applaused}
+            　拍手された: {this.state.applauded}
           </Text>
         </View>
       </View>
     );
   }
-}
+ }
 
 const styles = StyleSheet.create({
   container: {

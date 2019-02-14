@@ -36,6 +36,7 @@ export default class CommentIndex extends Component<{}> {
   }
 
   _onPress = (text) => {
+
     const list = [].concat(this.state.list);
 
     list.push({
@@ -108,9 +109,10 @@ export default class CommentIndex extends Component<{}> {
           </View>
           <View style={styles.CommentListContainer}>
             <FlatList
+              /*inverted*/
               style={styles.CommentList}
               data={list}
-              renderItem={({ item }) => <CommentItem {...item} head={this.state.head} pick={this.state.pick}/>}
+              renderItem={({ item }) => <CommentItem {...item} /> }
             />
           </View>
         </View>
@@ -166,6 +168,9 @@ const styles = StyleSheet.create({
     marginTop:55,
   },
   CommentList: {
+    /*transform: [
+    { scaleY: -1 },
+    ],*/
     paddingLeft: 10,
     paddingRight: 10,
   }

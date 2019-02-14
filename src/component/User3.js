@@ -15,37 +15,44 @@ export default class User2 extends Component {
   state = {
     name: '',
     email: '',
-    applause:'',
-    applaused:'',
+    applause: '',
+    applauded: '',
   };
   componentDidMount = () => {
-    this.getValueFromStorage();
-  };
-
-  getValueFromStorage = () => {
-    let keys = ['name2', 'email2', 'applause2', 'applaused2'];
-    AsyncStorage.multiGet(keys).then(result => {
-      this.setState({
-        name: result[0][1],
-        email: result[1][1],
-        applause:　result[2][1],
-        applaused: result[3][1],
-      });
-    });
+    AsyncStorage.getItem('name2').then(value =>
+      this.setState({ name: value })
+    );
+    AsyncStorage.getItem('email2').then(value =>
+      this.setState({ email: value })
+    );
+    AsyncStorage.getItem('applause2').then(value =>
+      this.setState({ applause: value })
+    );
+    AsyncStorage.getItem('applauded2').then(value =>
+      this.setState({ applauded: value })
+    );
   };
 
   setName = value => {
-    this.setState({ name: value });
+    AsyncStorage.setItem('name2', value).then(() => {
+      this.setState({ name: value });
+    });
   };
   setEmail = value => {
-    this.setState({ email: value });
+    AsyncStorage.setItem('email2', value).then(() => {
+      this.setState({ email: value });
+    });
   };
-  setApplause = value => {
-    this.setState({ applause: value });
-  };
-  setApplaused = value => {
-    this.setState({ applaused: value });
-  };
+  setapplause = value => {
+   AsyncStorage.setItem('applause2', value).then(() => {
+     this.setState({ applause: value });
+   });
+ };
+ setapplaused = value => {
+   AsyncStorage.setItem('applauded2', value).then(() => {
+     this.setState({ applauded: value });
+   });
+ };
 
 
   saveText = () => {
@@ -85,16 +92,16 @@ export default class User2 extends Component {
         </View>
         <View style={styles.applause}>
           <Text style={styles.applauseText}>
-            拍手できる: {this.state.applause}
+             拍手できる: {this.state.applause}
           </Text>
           <Text>
-            拍手された: {this.state.applaused}
+            　拍手された: {this.state.applauded}
           </Text>
         </View>
       </View>
     );
   }
-}
+ }
 
 const styles = StyleSheet.create({
   container: {
